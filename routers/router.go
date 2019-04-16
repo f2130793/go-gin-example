@@ -13,6 +13,7 @@ import (
 	_ "github.com/EDDYCJY/go-gin-example/docs"
 	"github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
+	"ginReact/middleware/core"
 )
 
 // InitRouter initialize routing information
@@ -32,6 +33,7 @@ func InitRouter() *gin.Engine {
 	apiv1 := r.Group("/api/v1")
 	//暂时去除中间件认证
 	//apiv1.Use(jwt.JWT())
+	apiv1.Use(core.Cors())
 	{
 		//获取标签列表
 		apiv1.GET("/tags", v1.GetTags)
